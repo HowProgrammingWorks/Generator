@@ -26,7 +26,21 @@ function* consume() {
   }
 }
 
-let consumer = consume();
-while (true) {
-  consumer.next();
+function* anotherTask() {
+  while (true) {
+    yield* sleep(1000);
+    console.log('Hello!\n');
+  }
 }
+
+let consumer = consume();
+let task = anotherTask();
+
+function step() {
+  consumer.next();
+  task.next();
+
+  setImmediate(step);
+}
+
+step();

@@ -31,6 +31,10 @@ function* consume() {
 let consumer = consume();
 let producer = produce(consumer);
 consumer.next();
-while (true) {
+
+function step() {
   producer.next();
+  setImmediate(step);
 }
+
+step();
