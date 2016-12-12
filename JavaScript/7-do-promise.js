@@ -1,5 +1,7 @@
 'use strict';
 
+// Run `helpers/server.js` for this example to work.
+
 const getJSON = require('./helpers/get-json');
 const doMonad = require('./helpers/do-notation');
 
