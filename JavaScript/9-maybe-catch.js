@@ -1,6 +1,6 @@
 'use strict';
 
-const doMonad = require('./do-notation');
+const doMonad = require('./helpers/do-notation');
 
 class Just {
   constructor(value) {

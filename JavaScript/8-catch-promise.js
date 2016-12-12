@@ -1,7 +1,7 @@
 'use strict';
 
-const getJSON = require('./get-json');
-const doMonad = require('./do-notation');
+const getJSON = require('./helpers/get-json');
+const doMonad = require('./helpers/do-notation');
 
 const baseUrl = 'http://localhost:3000/';
 doMonad(function* () {

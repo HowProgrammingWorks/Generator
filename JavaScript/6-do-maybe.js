@@ -1,7 +1,7 @@
 'use strict';
 
-const { Just, Nothing } = require('./maybe');
-const doMonad = require('./do-notation');
+const { Just, Nothing } = require('./helpers/maybe');
+const doMonad = require('./helpers/do-notation');
 
 Just(5).then(x => (
   Just(x + 3)
