@@ -12,12 +12,10 @@ function* range(first, second, step = 1) {
     end = second;
   }
 
-  if (step === 0) {
-    throw new Error('illegal step');
-  }
-
-  while (current < end && step > 0 ||
-         current > end && step < 0) {
+  while (
+    current < end && step > 0 ||
+    current > end && step < 0
+  ) {
     yield current;
     current += step;
   }
@@ -29,3 +27,9 @@ console.log([
   [...range(2, 15, 2)],
   [...range(10, 0, -1)],
 ]);
+
+/*
+for (let x of range(10, Infinity, 3000000000000)) {
+  console.dir({ x });
+}
+*/

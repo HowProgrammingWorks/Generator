@@ -1,6 +1,7 @@
 'use strict';
 
 class Range {
+
   constructor(first, second, step = 1) {
     if (second === undefined) {
       this.start = 0;
@@ -9,11 +10,6 @@ class Range {
       this.start = first;
       this.end = second;
     }
-
-    if (step === 0) {
-      throw new Error('illegal step');
-    }
-
     this.step = step;
   }
 
@@ -22,12 +18,14 @@ class Range {
     let current = start;
     return {
       next() {
-        if (current === undefined) {
+        if (current === undefined || step === 0) {
           return { value: undefined, done: true };
         }
 
-        if (current >= end && step > 0 ||
-            current <= end && step < 0) {
+        if (
+          current >= end && step > 0 ||
+          current <= end && step < 0
+        ) {
           let value = current;
           current = undefined;
           return { value, done: true };
@@ -39,6 +37,7 @@ class Range {
       }
     };
   }
+
 }
 
 console.log([
