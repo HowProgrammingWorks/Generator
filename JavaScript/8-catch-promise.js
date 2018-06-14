@@ -7,9 +7,10 @@ const doMonad = require('./helpers/do-notation');
 
 const baseUrl = 'http://localhost:3000/';
 doMonad(function* () {
-  let api = yield getJSON(baseUrl);
-  for (let resource of api.resources) {
-    let data = yield getJSON(baseUrl + resource);
+  const api = yield getJSON(baseUrl);
+  let resource, data;
+  for (resource of api.resources) {
+    data = yield getJSON(baseUrl + resource);
     console.log(data);
   }
 }).catch(e => {
