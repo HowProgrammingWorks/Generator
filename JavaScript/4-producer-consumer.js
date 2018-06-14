@@ -1,7 +1,7 @@
 'use strict';
 
 function* sleep(interval) {
-  let start = new Date();
+  const start = new Date();
   while (new Date() - start < interval) {
     yield;
   }
@@ -16,13 +16,15 @@ function* consume() {
   let count = 0;
   let sum = 0;
   while (true) {
-    let data = yield* produce();
+    const data = yield* produce();
     count++;
     sum += data;
-    console.log(`Got data: ${data}\n` +
-                `Count:    ${count}\n` +
-                `Sum:      ${sum}\n` +
-                `Average:  ${sum / count}\n`);
+    console.log(
+      `Got data: ${data}\n` +
+      `Count:    ${count}\n` +
+      `Sum:      ${sum}\n` +
+      `Average:  ${sum / count}\n`
+    );
   }
 }
 
@@ -33,14 +35,13 @@ function* anotherTask() {
   }
 }
 
-let consumer = consume();
-let task = anotherTask();
+const consumer = consume();
+const task = anotherTask();
 
-function step() {
+const step = () => {
   consumer.next();
   task.next();
-
   setImmediate(step);
-}
+};
 
 step();

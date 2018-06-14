@@ -1,8 +1,7 @@
 'use strict';
 
 function* range(first, second, step = 1) {
-  let current;
-  let end;
+  let current, end;
 
   if (second === undefined) {
     current = 0;
@@ -12,13 +11,18 @@ function* range(first, second, step = 1) {
     end = second;
   }
 
-  while (
-    current < end && step > 0 ||
-    current > end && step < 0
-  ) {
-    yield current;
-    current += step;
+  if (step > 0) {
+    while (current < end) {
+      yield current;
+      current += step;
+    }
+  } else {
+    while (current > end) {
+      yield current;
+      current += step;
+    }
   }
+
 }
 
 console.log([
@@ -27,9 +31,3 @@ console.log([
   [...range(2, 15, 2)],
   [...range(10, 0, -1)],
 ]);
-
-/*
-for (let x of range(10, Infinity, 3000000000000)) {
-  console.dir({ x });
-}
-*/

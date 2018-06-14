@@ -26,12 +26,12 @@ class Range {
           current >= end && step > 0 ||
           current <= end && step < 0
         ) {
-          let value = current;
+          const value = current;
           current = undefined;
           return { value, done: true };
         }
 
-        let value = current;
+        const value = current;
         current += step;
         return { value, done: false };
       }

@@ -7,7 +7,7 @@ function* numbers(start) {
 }
 
 function* sieve(sequence, prime) {
-  for (let number of sequence) {
+  for (const number of sequence) {
     if (number % prime !== 0) {
       yield number;
     }
@@ -15,9 +15,10 @@ function* sieve(sequence, prime) {
 }
 
 function* primes() {
-  var sequence = numbers(2);
+  let sequence = numbers(2);
+  let prime;
   while (true) {
-    let prime = sequence.next().value;
+    prime = sequence.next().value;
     yield prime;
     sequence = sieve(sequence, prime);
   }
@@ -29,6 +30,6 @@ function* take(count, sequence) {
   }
 }
 
-for (var prime of take(10, primes())) {
+for (const prime of take(10, primes())) {
   console.log(prime);
 }
