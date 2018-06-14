@@ -2,33 +2,29 @@
 
 const http = require('http');
 
-module.exports = (url) => {
-  return new Promise((resolve, reject) => {
-    http.get(url, res => {
-      let code = res.statusCode;
-      if (code !== 200) {
-        return reject(new Error(`HTTP status code ${code}`));
-      }
+module.exports = (url) => new Promise((resolve, reject) => {
+  http.get(url, res => {
+    const code = res.statusCode;
+    if (code !== 200) {
+      reject(new Error(`HTTP status code ${code}`));
+      return;
+    }
 
-      res.on('error', reject);
+    res.on('error', reject);
 
-      let chunks = [];
-      res.on('data', chunk => {
-        chunks.push(chunk);
-      });
+    const chunks = [];
+    res.on('data', chunk => {
+      chunks.push(chunk);
+    });
 
-      res.on('end', () => {
-        let json = Buffer.concat(chunks).toString();
-        let object = null;
-
-        try {
-          object = JSON.parse(json);
-        } catch (error) {
-          return reject(error);
-        }
-
+    res.on('end', () => {
+      const json = Buffer.concat(chunks).toString();
+      try {
+        const object = JSON.parse(json);
         resolve(object);
-      });
+      } catch (error) {
+        reject(error);
+      }
     });
   });
-};
+});
