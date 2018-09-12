@@ -13,6 +13,6 @@ doMonad(function* () {
     data = yield getJSON(baseUrl + resource);
     console.log(data);
   }
-}).catch(e => {
-  console.log(e);
+}).catch(err => {
+  console.log(err);
 });
