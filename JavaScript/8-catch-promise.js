@@ -8,9 +8,8 @@ const doMonad = require('./helpers/do-notation');
 const baseUrl = 'http://localhost:3000/';
 doMonad(function* () {
   const api = yield getJSON(baseUrl);
-  let resource, data;
-  for (resource of api.resources) {
-    data = yield getJSON(baseUrl + resource);
+  for (const  resource of api.resources) {
+    const data = yield getJSON(baseUrl + resource);
     console.log(data);
   }
 }).catch(err => {
