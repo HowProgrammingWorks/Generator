@@ -6,6 +6,18 @@ function* genFn(x) {
   return x * 2;
 }
 
+console.log('genFn =', [genFn]);
+console.log('genFn.toString() =', [genFn.toString()]);
+console.log('typeof(genFn) =', typeof(genFn));
+const fnProto = Object.getPrototypeOf(genFn);
+console.log('fnProto.constructor.name =', fnProto.constructor.name);
+
+console.log('typeof(genFn(5)) =', typeof(genFn(5)));
+console.log('genFn(5).toString() =', genFn(5).toString());
+const genProto = Object.getPrototypeOf(genFn(5));
+console.log('genProto =', genProto);
+console.log('genProto[Symbol.iterator] =', genProto[Symbol.iterator]);
+
 console.log('genFn(5) =', genFn(5));
 console.log('genFn(5).next() =', genFn(5).next());
 console.log('genFn(5).next().value =', genFn(5).next().value);
