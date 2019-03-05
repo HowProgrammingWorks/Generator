@@ -1,9 +1,21 @@
 'use strict';
 
 function* genFn() {
-  yield 10;
-  yield 20;
-  yield 30;
+  try {
+    yield 10;
+  } catch (err) {
+    console.error('intercepted', err);
+  }
+  try {
+    yield 20;
+  } catch (err) {
+    console.error('intercepted', err);
+  }
+  try {
+    yield 30;
+  } catch (err) {
+    console.error('intercepted', err);
+  }
 }
 
 try {
