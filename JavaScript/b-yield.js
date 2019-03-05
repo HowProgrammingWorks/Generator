@@ -1,9 +1,10 @@
 'use strict';
 
-function* counter(begin, end, delta) {
+function* counter(begin, end, delta = 1) {
   let value = begin;
   while (end > value) {
     value += delta;
+    if (value > end) return;
     yield value;
   }
 }

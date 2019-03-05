@@ -4,7 +4,7 @@ function* ids(...args) {
   let i = 0;
   while (args.length > i) {
     const id = args[i++];
-    if (id === undefined) return -1;
+    if (id === undefined) return;
     yield id;
   }
 }
