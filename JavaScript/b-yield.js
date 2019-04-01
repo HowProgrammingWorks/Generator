@@ -2,7 +2,7 @@
 
 function* counter(begin, end, delta) {
   let value = begin;
-  while (end > value) {
+  while (end > value + delta) {
     value += delta;
     yield value;
   }
