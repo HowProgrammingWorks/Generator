@@ -3,16 +3,17 @@
 // Generator function
 
 function* genFn(x) {
-  return x * 2;
+  yield x * 2;
+  return x * 3;
 }
 
 console.log('genFn =', [genFn]);
 console.log('genFn.toString() =', [genFn.toString()]);
-console.log('typeof(genFn) =', typeof(genFn));
+console.log('typeof genFn =', typeof genFn);
 const fnProto = Object.getPrototypeOf(genFn);
 console.log('fnProto.constructor.name =', fnProto.constructor.name);
 
-console.log('typeof(genFn(5)) =', typeof(genFn(5)));
+console.log('typeof genFn(5) =', typeof genFn(5));
 console.log('genFn(5).toString() =', genFn(5).toString());
 const genProto = Object.getPrototypeOf(genFn(5));
 console.log('genProto =', genProto);
@@ -28,9 +29,11 @@ class Multiplier {
   constructor(k) {
     this.value = k;
   }
+
   * genMethod(a) {
-    this.value = a * this.value;
-    return a * this.value;
+    yield this.value;
+    this.value = this.value * a;
+    return this.value;
   }
 }
 
@@ -41,8 +44,10 @@ console.log('m1.genMethod(5).next() =', m1.genMethod(5).next());
 
 const m2 = {
   value: 2,
+
   * genMethod(a) {
-    this.value = a * this.value;
+    yield this.value;
+    this.value = this.value * a;
     return this.value;
   }
 };
