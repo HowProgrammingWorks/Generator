@@ -22,7 +22,6 @@ function* range(first, second, step = 1) {
       current += step;
     }
   }
-
 }
 
 console.log([

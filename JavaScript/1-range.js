@@ -1,7 +1,6 @@
 'use strict';
 
 class Range {
-
   constructor(first, second, step = 1) {
     if (second === undefined) {
       this.start = 0;
@@ -37,7 +36,6 @@ class Range {
       }
     };
   }
-
 }
 
 console.log([
