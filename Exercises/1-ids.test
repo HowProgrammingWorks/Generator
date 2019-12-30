@@ -1,0 +1,60 @@
+({
+  name: 'ids',
+  length: [100, 1000],
+  test: ids => {
+    {
+      const array = [];
+      for (const id of ids()) {
+        if (id.length > 10) break;
+        array.push(id);
+      }
+      array.sort((a, b) => parseInt(a, 2) - parseInt(b, 2));
+      const expected = [
+        '100',
+        '110',
+        '10000',
+        '10010',
+        '11000',
+        '11010',
+        '1000000',
+        '1000010',
+        '1001000',
+        '1001010',
+        '1100000',
+        '1100010',
+        '1101000',
+        '1101010',
+        '100000000',
+        '100000010',
+        '100001000',
+        '100001010',
+        '100100000',
+        '100100010',
+        '100101000',
+        '100101010',
+        '110000000',
+        '110000010',
+        '110001000',
+        '110001010',
+        '110100000',
+        '110100010',
+        '110101000',
+        '110101010',
+      ];
+      al = array.length;
+      el = expected.length;
+      if (al !== el) {
+        const msg = `Result length is ${al} instead of expected ${el}`;
+        throw new Error(msg);
+      }
+      for (let i = 0; i < al; i++) {
+        const x = array[i];
+        const y = expected[i];
+        if (array[i] !== expected[i]) {
+          const msg = `Element result[${i}] === ${x} instead of expected ${y}`;
+          throw new Error(msg);
+        }
+      }
+    }
+  }
+})
