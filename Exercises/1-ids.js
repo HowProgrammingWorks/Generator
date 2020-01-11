@@ -1,20 +1,21 @@
+/* eslint-disable no-undef */
 'use strict';
 
-const ids = function* () {
-  const free = ['0'];
-  const prepared = { has: false, value: '' };
+const BIG_ONE = BigInt(1);
+const BIG_ZERO = BigInt(0);
 
-  while (true) {
-    if (prepared.has) {
-      prepared.has = false;
-      yield prepared.value;
+const ids = function* () {
+  for (let i = BIG_ONE; ; i++) {
+    const base = BIG_ONE << (i << BIG_ONE);
+    for (let j = BIG_ZERO; j < BIG_ONE << i; j++) {
+      let value = base;
+      for (let k = BIG_ZERO; k <= Math.log2(Number(j)); k++) {
+        if (j / (BIG_ONE << k) & BIG_ONE) {
+          value |= BIG_ONE << (k << BIG_ONE) + BIG_ONE;
+        }
+      }
+      yield value.toString(2);
     }
-    const nextFree = free.shift();
-    free.push('01' + nextFree);
-    free.push('00' + nextFree);
-    prepared.value = '11' + nextFree;
-    prepared.has = true;
-    yield '10' + nextFree;
   }
 };
 
