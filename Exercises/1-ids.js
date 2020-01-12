@@ -1,20 +1,21 @@
 'use strict';
 
 const ids = function* () {
-  const free = ['0'];
-  const prepared = { has: false, value: '' };
-
+  let base = '1';
+  let rank = -1;
   while (true) {
-    if (prepared.has) {
-      prepared.has = false;
-      yield prepared.value;
+    if (rank === -1) {
+      base = `1${'0'.repeat(base.length + 1)}`;
+      rank = base.length - 2;
+      yield base;
     }
-    const nextFree = free.shift();
-    free.push('01' + nextFree);
-    free.push('00' + nextFree);
-    prepared.value = '11' + nextFree;
-    prepared.has = true;
-    yield '10' + nextFree;
+    if (base[rank] === '0') {
+      base = `${base.slice(0, rank)}1${'0'.repeat(base.length - rank - 1)}`;
+      rank = base.length - 2;
+      yield base;
+    } else {
+      rank -= 2;
+    }
   }
 };
 
