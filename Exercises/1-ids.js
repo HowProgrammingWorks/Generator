@@ -1,20 +1,15 @@
 'use strict';
 
-const ids = function* () {
-  const free = ['0'];
-  const prepared = { has: false, value: '' };
-
-  while (true) {
-    if (prepared.has) {
-      prepared.has = false;
-      yield prepared.value;
+const ids = function* (i = 1) {
+  for (;;++i) {
+    const left = 4 ** i;
+    for (let j = 0; j < 2 ** i; j++) {
+      let res = 0;
+      for (let k = 0; k < i; k++) {
+        res += (j & (1 << k)) << (k + 1);
+      }
+      yield (left + res).toString(2);
     }
-    const nextFree = free.shift();
-    free.push('01' + nextFree);
-    free.push('00' + nextFree);
-    prepared.value = '11' + nextFree;
-    prepared.has = true;
-    yield '10' + nextFree;
   }
 };
 
