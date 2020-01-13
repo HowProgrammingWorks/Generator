@@ -11,7 +11,7 @@ const ids = function* () {
       let value = base;
       for (let k = BIG_ZERO; k <= Math.log2(Number(j)); k++) {
         if (j / (BIG_ONE << k) & BIG_ONE) {
-          value |= BIG_ONE << -~(k << BIG_ONE);
+          value |= BIG_ONE << (k << BIG_ONE | BIG_ONE);
         }
       }
       yield value.toString(2);
