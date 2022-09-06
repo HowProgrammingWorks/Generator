@@ -4,9 +4,9 @@ const { Just } = require('./helpers/maybe');
 
 const doMonad = require('./helpers/do-notation');
 
-Just(5).then(x => (
+Just(5).then((x) => (
   Just(x + 3)
-).then(x => (
+).then((x) => (
   Just(x * 4)
 )).then(console.log));
 

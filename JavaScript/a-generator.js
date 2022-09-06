@@ -32,7 +32,7 @@ class Multiplier {
 
   * genMethod(a) {
     yield this.value;
-    this.value = this.value * a;
+    this.value *= a;
     return this.value;
   }
 }
@@ -47,7 +47,7 @@ const m2 = {
 
   * genMethod(a) {
     yield this.value;
-    this.value = this.value * a;
+    this.value *= a;
     return this.value;
   }
 };

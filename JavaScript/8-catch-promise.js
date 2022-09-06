@@ -12,6 +12,6 @@ doMonad(function* () {
     const data = yield getJSON(baseUrl + resource);
     console.log(data);
   }
-}).catch(err => {
+}).catch((err) => {
   console.log(err);
 });

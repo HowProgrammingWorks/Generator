@@ -2,8 +2,8 @@
 
 const http = require('http');
 
-module.exports = url => new Promise((resolve, reject) => {
-  http.get(url, res => {
+module.exports = (url) => new Promise((resolve, reject) => {
+  http.get(url, (res) => {
     const code = res.statusCode;
     if (code !== 200) {
       reject(new Error(`HTTP status code ${code}`));
@@ -13,7 +13,7 @@ module.exports = url => new Promise((resolve, reject) => {
     res.on('error', reject);
 
     const chunks = [];
-    res.on('data', chunk => {
+    res.on('data', (chunk) => {
       chunks.push(chunk);
     });
 
