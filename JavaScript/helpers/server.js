@@ -1,7 +1,6 @@
 'use strict';
 
 const http = require('node:http');
-const url = require('node:url');
 
 const routes = {
   '/': (request, callback) => {
@@ -27,19 +26,12 @@ const routes = {
 };
 
 const server = http.createServer((req, res) => {
-  const parsedUrl = url.parse(req.url);
-  let path = parsedUrl.pathname;
-  if (path.endsWith('/') && path.length > 1) {
-    path = path.slice(0, -1);
-  }
-
-  const handler = routes[path];
+  const handler = routes[req.url];
   if (!handler) {
     res.writeHead(404);
     res.end('Not found');
     return;
   }
-
   handler(req, (result) => {
     const json = JSON.stringify(result);
     res.writeHead(200, { 'Content-Type': 'application/json' });
