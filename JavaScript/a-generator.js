@@ -49,7 +49,7 @@ const m2 = {
     yield this.value;
     this.value *= a;
     return this.value;
-  }
+  },
 };
 
 console.log('m2.genMethod(5).next() =', m2.genMethod(5).next());

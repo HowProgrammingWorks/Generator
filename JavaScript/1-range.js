@@ -33,7 +33,7 @@ class Range {
         const value = current;
         current += step;
         return { value, done: false };
-      }
+      },
     };
   }
 }

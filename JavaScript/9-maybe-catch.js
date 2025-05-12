@@ -1,6 +1,6 @@
 'use strict';
 
-const doMonad = require('./helpers/do-notation');
+const doMonad = require('./helpers/do-notation.js');
 
 const Nothing = {
   then() {
@@ -10,7 +10,7 @@ const Nothing = {
   catch(callback) {
     callback();
     return this;
-  }
+  },
 };
 
 class Just {

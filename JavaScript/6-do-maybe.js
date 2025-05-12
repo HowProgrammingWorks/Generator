@@ -1,14 +1,14 @@
 'use strict';
 
-const { Just } = require('./helpers/maybe');
+const { Just } = require('./helpers/maybe.js');
 
-const doMonad = require('./helpers/do-notation');
+const doMonad = require('./helpers/do-notation.js');
 
-Just(5).then((x) => (
+Just(5).then((x) =>
   Just(x + 3)
-).then((x) => (
-  Just(x * 4)
-)).then(console.log));
+.then((x) =>
+  Just(x * 4),
+).then(console.log));
 
 doMonad(function* () {
   const a = yield Just(5);

@@ -6,23 +6,23 @@ const routes = {
   '/': (request, callback) => {
     callback({
       apiVersion: '1.0',
-      resources: ['person', 'city']
+      resources: ['person', 'city'],
     });
   },
 
   '/person': (request, callback) => {
     callback({
       name: 'アレクセイ',
-      age: 20
+      age: 20,
     });
   },
 
   '/city': (request, callback) => {
     callback({
       name: 'Kyiv',
-      country: 'Ukraine'
+      country: 'Ukraine',
     });
-  }
+  },
 };
 
 const server = http.createServer((req, res) => {

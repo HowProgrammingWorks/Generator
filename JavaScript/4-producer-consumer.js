@@ -23,7 +23,7 @@ function* consume() {
       `Got data: ${data}\n` +
       `Count:    ${count}\n` +
       `Sum:      ${sum}\n` +
-      `Average:  ${sum / count}\n`
+      `Average:  ${sum / count}\n`,
     );
   }
 }

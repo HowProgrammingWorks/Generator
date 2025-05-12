@@ -8,7 +8,7 @@ function Just(value) {
 
     then(fn) {
       return fn(value);
-    }
+    },
   };
 }
 
@@ -19,7 +19,7 @@ const Nothing = {
 
   then() {
     return Nothing;
-  }
+  },
 };
 
 module.exports = { Just, Nothing };
