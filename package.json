@@ -6,10 +6,15 @@
   "license": "MIT",
   "scripts": {
     "test": "eslint ./Exercises; hpw",
-    "ci": "eslint ./Exercises && hpw"
+    "ci": "eslint ./Exercises && hpw",
+    "lint": "eslint . && prettier -c \"**/*.js\"",
+    "fix": "eslint . --fix && prettier --write \"**/*.js\""
   },
   "dependencies": {
     "eslint": "^7.5.0",
-    "hpw": "^0.1.14"
+    "hpw": "^0.1.14",
+    "eslint": "^9.12.0",
+    "eslint-config-metarhia": "^9.1.1",
+    "prettier": "^3.3.3"
   }
 }
